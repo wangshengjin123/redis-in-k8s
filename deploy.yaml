@@ -1,0 +1,23 @@
+#deploy模板  分别需要创建6个，使用dockerfile的6个镜像
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: redis0
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        name: redis0
+    spec:
+      containers:
+        - name: redis0
+          image: 192.168.0.236:9001/wangsj/redis0:0.3
+          volumeMounts: 
+            - name: data 
+              mountPath: /redis-data
+      volumes:
+      - name: data 
+        nfs: 
+          server: 192.168.23.205
+          path: "/home/data/k8s_data/wangsj/redis-cluster"
