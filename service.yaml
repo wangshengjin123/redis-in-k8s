@@ -1,0 +1,89 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: redisserver0
+  namespace: zwt
+  labels:
+    name: redisserver0
+spec: 
+  ports:
+    - port: 7000
+      targetPort: 7000
+  type: NodePort
+  selector:
+    name: redis0
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: redisserver1
+  namespace: zwt
+  labels:
+    name: redisserver1
+spec:
+  ports:
+    - port: 7001
+      targetPort: 7001
+  type: NodePort
+  selector:
+    name: redis1
+    ---
+apiVersion: v1
+kind: Service
+metadata:
+  name: redisserver2
+  namespace: zwt
+  labels:
+    name: redisserver2
+spec:
+  ports:
+    - port: 7002
+      targetPort: 7002
+  type: NodePort
+  selector:
+    name: redis2
+    ---
+apiVersion: v1
+kind: Service
+metadata:
+  name: redisserver3
+  namespace: zwt
+  labels:
+    name: redisserver3
+spec:
+  ports:
+    - port: 7003
+      targetPort: 7003
+  type: NodePort
+  selector:
+    name: redis3
+    ---
+apiVersion: v1
+kind: Service
+metadata:
+  name: redisserver4
+  namespace: zwt
+  labels:
+    name: redisserver4
+spec:
+  ports:
+    - port: 7004
+      targetPort: 7004
+  type: NodePort
+  selector:
+    name: redis4
+    ---
+apiVersion: v1
+kind: Service
+metadata:
+  name: redisserver5
+  namespace: zwt
+  labels:
+    name: redisserver5
+spec:
+  ports:
+    - port: 7005
+      targetPort: 7005
+  type: NodePort
+  selector:
+name: redis5
