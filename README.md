@@ -3,22 +3,39 @@
 
 下载后，通过修改端口，创建6个镜像  
 vim docker-entrypoint.sh
+
 docker build -t xxx/wangsj/redis0:0.3 .
+
 docker push xxx/wangsj/redis0:0.3
+
 vim docker-entrypoint.sh
+
 docker build -t xxx/wangsj/redis1:0.3 .
+
 docker push xxx/wangsj/redis1:0.3
+
 vim docker-entrypoint.sh
+
 docker build -t xxx/wangsj/redis2:0.3 .
+
 docker push xxx/wangsj/redis2:0.3
+
 vim docker-entrypoint.sh
+
 docker xxx/wangsj/redis3:0.3 .
+
 docker xxx/wangsj/redis3:0.3
+
 vim docker-entrypoint.sh
+
 docker xxx/wangsj/redis4:0.3 .
+
 docker xxx/wangsj/redis4:0.3
+
 vim docker-entrypoint.sh
+
 docker xxx/wangsj/redis5:0.3 .
+
 docker xxx/wangsj/redis5:0.3
 
 k8s创建deploy 和service
@@ -45,9 +62,13 @@ pip install redis-trib
 实际测试发现，不能使用service的ip，要使用pod的ip
 
 redis-trib.py create 172.20.6.43:7000 172.20.12.107:7002 172.20.10.77:7004
+
 redis-trib.py replicate --master-addr 172.20.6.43:7000 --slave-addr 172.20.3.80:7001
+
 redis-trib.py replicate --master-addr 172.20.12.107:7002 --slave-addr 172.20.11.179:7003
+
 redis-trib.py replicate --master-addr 172.20.10.77:7004 --slave-addr 172.20.8.248:7005
+
 安装完成
 
 登陆查看cluster nodes
