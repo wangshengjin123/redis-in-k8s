@@ -1,7 +1,7 @@
 # redis-in-k8s
 通过修改脚本的port，7000-7005，创建三主三从的redis集群
+时间：2018.11.01
 
-更新（使用StatefulSet方式部署，更为简单，不要打6个镜像，使用ubuntu的方式还是一样的）
 
 下载后，通过修改端口，创建6个镜像  
 vim docker-entrypoint.sh
@@ -43,6 +43,11 @@ docker xxx/wangsj/redis5:0.3
 k8s创建deploy 和service
 通过模板和修改模板，创建6个deploy和6个service
 此处省略一大堆
+
+
+更新：更新（使用StatefulSet方式部署，更为简单，不要打6个镜像，使用ubuntu的方式还是一样的）（2018.11.02）
+
+
 创建一个ubuntu镜像开始配置集群
 如果没有打包好的镜像，那么你就需要使用官方的ubuntu镜像，然后安装一些必要的软件
 apt-get update 
