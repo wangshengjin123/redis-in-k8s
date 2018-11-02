@@ -1,6 +1,8 @@
 # redis-in-k8s
 通过修改脚本的port，7000-7005，创建三主三从的redis集群
 
+更新（使用StatefulSet方式部署，更为简单，不要打6个镜像，使用ubuntu的方式还是一样的）
+
 下载后，通过修改端口，创建6个镜像  
 vim docker-entrypoint.sh
 
@@ -44,19 +46,34 @@ k8s创建deploy 和service
 创建一个ubuntu镜像开始配置集群
 如果没有打包好的镜像，那么你就需要使用官方的ubuntu镜像，然后安装一些必要的软件
 apt-get update 
+
 apt-get install -y vim wget python2.7 python-pip redis-tools dnsutils
+
+
 cat > /etc/apt/sources.list << EOF
+
 deb http://mirrors.aliyun.com/ubuntu/ bionic main restricted universe multiverse
+
 deb-src http://mirrors.aliyun.com/ubuntu/ bionic main restricted universe multiverse
+
 deb http://mirrors.aliyun.com/ubuntu/ bionic-security main restricted universe multiverse
+
 deb-src http://mirrors.aliyun.com/ubuntu/ bionic-security main restricted universe multiverse
+
 deb http://mirrors.aliyun.com/ubuntu/ bionic-updates main restricted universe multiverse
+
 deb-src http://mirrors.aliyun.com/ubuntu/ bionic-updates main restricted universe multiverse
+
 deb http://mirrors.aliyun.com/ubuntu/ bionic-proposed main restricted universe multiverse
+
 deb-src http://mirrors.aliyun.com/ubuntu/ bionic-proposed main restricted universe multiverse
+
 deb http://mirrors.aliyun.com/ubuntu/ bionic-backports main restricted universe multiverse
+
 deb-src http://mirrors.aliyun.com/ubuntu/ bionic-backports main restricted universe multiverse
+
 EOF
+
 pip install redis-trib
 使用unbuntu创建集群
 实际测试发现，不能使用service的ip，要使用pod的ip
